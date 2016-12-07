@@ -20,5 +20,13 @@ namespace  Restaurant
       //Assert
       Assert.Equal(0, result);
     }
+    [Fact]
+    public void Test_EqualOverride_True()
+    {
+      Cuisine firstCuisine = new Cuisine("Texican");
+      Cuisine secondCuisine = new Cuisine("Texican");
+
+      Assert.Equal(firstCuisine,secondCuisine);
+    }
   }
 }
