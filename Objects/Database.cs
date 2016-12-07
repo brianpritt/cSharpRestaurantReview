@@ -1,7 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Restaurant
+namespace RestaurantDirectory
 {
   public class DB
   {

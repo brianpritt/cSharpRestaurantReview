@@ -1,9 +1,9 @@
 using Nancy;
 using System.Collections.Generic;
 using System;
-using Restaurant.Objects;
+using RestaurantDirectory.Objects;
 
-namespace Restaurant
+namespace RestaurantDirectory
 {
   public class HomeModule : NancyModule
   {

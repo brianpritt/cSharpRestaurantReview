@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace Restaurant.Objects
+namespace RestaurantDirectory.Objects
 {
   public class Cuisine
   {

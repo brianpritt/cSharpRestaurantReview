@@ -1,9 +1,9 @@
 using Xunit;
 using System;
 using System.Collections.Generic;
-using Restaurant.Objects;
+using RestaurantDirectory.Objects;
 
-namespace  Restaurant
+namespace  RestaurantDirectory
 {
   public class CuisineTest : IDisposable
   {
