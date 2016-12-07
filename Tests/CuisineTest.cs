@@ -53,7 +53,19 @@ namespace  Restaurant
       Cuisine findCuisine = Cuisine.Find(newCuisine.GetId());
       //Assert
       Assert.Equal(newCuisine, findCuisine);
+    }
+    [Fact]
+    public void Edit_ChangesName_true()
+    {
+      //Arrange
+      Cuisine newCuisine = new Cuisine("Mexican");
+      newCuisine.Save();
+      //Act
+      newCuisine.Edit("Texican");
+      Cuisine foundCuisine = Cuisine.Find(newCuisine.GetId());
 
+      //Assert
+      Assert.Equal("Texican", foundCuisine.GetName());
     }
   }
 }

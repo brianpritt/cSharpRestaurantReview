@@ -134,5 +134,33 @@ namespace Restaurant.Objects
       }
       return foundCuisine;
     }
+
+    public void Edit(string newName)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE cuisines SET name = @NewName OUTPUT INSERTED.name WHERE id = @CuisineId;", conn);
+
+      SqlParameter nameParameter = new SqlParameter("@NewName", newName);
+      SqlParameter cuisineIdParameter = new SqlParameter("@CuisineId", this.GetId());
+      cmd.Parameters.Add(nameParameter);
+      cmd.Parameters.Add(cuisineIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        this._name = rdr.GetString(0);
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
   }
 }
