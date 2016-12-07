@@ -1,16 +1,16 @@
 using Nancy;
 using System.Collections.Generic;
 using System;
-using TEMPLATE.Objects;
+using Restaurant.Objects;
 
-namespace TEMPLATE
+namespace Restaurant
 {
   public class HomeModule : NancyModule
   {
     public HomeModule()
     {
       Get["/"] = _ => {
-        return View["TEMPLATE.cshtml"];
+        return View["index.cshtml"];
       };
 
     }
