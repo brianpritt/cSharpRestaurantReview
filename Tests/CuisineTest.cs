@@ -43,5 +43,17 @@ namespace  Restaurant
       //Assert
       Assert.Equal(newCuisine, allCuisines[0]);
     }
+    [Fact]
+    public void Test_FindsCuisineInDatabase_true()
+    {
+      //Arrange
+      Cuisine newCuisine = new Cuisine("Indian");
+      newCuisine.Save();
+      //Act
+      Cuisine findCuisine = Cuisine.Find(newCuisine.GetId());
+      //Assert
+      Assert.Equal(newCuisine, findCuisine);
+
+    }
   }
 }
