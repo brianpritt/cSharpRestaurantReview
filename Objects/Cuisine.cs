@@ -162,5 +162,21 @@ namespace Restaurant.Objects
         conn.Close();
       }
     }
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM cuisines WHERE id = @CuisineId;", conn);
+      SqlParameter cuisineIdParameter = new SqlParameter("@CuisineId", this.GetId());
+
+      cmd.Parameters.Add(cuisineIdParameter);
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
   }
 }

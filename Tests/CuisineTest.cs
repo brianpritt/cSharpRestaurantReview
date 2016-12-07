@@ -67,5 +67,24 @@ namespace  Restaurant
       //Assert
       Assert.Equal("Texican", foundCuisine.GetName());
     }
+    [Fact]
+    public void Test_Delete_deleteCategoryFromDB()
+    {
+      //Arrange
+      string name1 = "Thai";
+      Cuisine newCuisine1 = new Cuisine(name1);
+      newCuisine1.Save();
+
+      string name2 = "Nepali";
+      Cuisine newCuisine2 = new Cuisine(name2);
+      newCuisine2.Save();
+      //Act
+      newCuisine1.Delete();
+      List<Cuisine> resultCuisine = Cuisine.GetAll();
+      List<Cuisine> testCuisineList = new List<Cuisine> {newCuisine2};
+      //Assert
+      Assert.Equal(testCuisineList, resultCuisine);
+
+    }
   }
 }
