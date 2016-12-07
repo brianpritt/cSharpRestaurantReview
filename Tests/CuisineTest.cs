@@ -5,8 +5,12 @@ using Restaurant.Objects;
 
 namespace  Restaurant
 {
-  public class CuisineTest
+  public class CuisineTest : IDisposable
   {
+    public void Dispose()
+    {
+      Cuisine.DeleteAll();
+    }
     public CuisineTest()
     {
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=restaurant_directory_test;Integrated Security=SSPI;";
@@ -27,6 +31,17 @@ namespace  Restaurant
       Cuisine secondCuisine = new Cuisine("Texican");
 
       Assert.Equal(firstCuisine,secondCuisine);
+    }
+    [Fact]
+    public void Save_SavesCuisineToDatabase_true()
+    {
+      //Arrange
+      Cuisine newCuisine = new Cuisine("Somali");
+      //Act
+      newCuisine.Save();
+      List<Cuisine> allCuisines = Cuisine.GetAll();
+      //Assert
+      Assert.Equal(newCuisine, allCuisines[0]);
     }
   }
 }
