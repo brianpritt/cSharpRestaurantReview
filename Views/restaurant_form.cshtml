@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+  <div class="container">
+    <h1>Restaurant Directory</h1>
+    <h2>New Restaurant</h2><br>
+
+      <form action="/add/restaurant" method="post">
+        <input class="form-control" type="text" name="restaurant_name" placeholder="Enter new restaurant">
+        <select class="form-control" name = "cuisine_id">
+          @foreach(var listItem in Model)
+          {
+            <option value="@listItem.GetId()">@listItem.GetName()</option>
+          }
+        </select>
+        <button class="btn btn-info"type="submit">Create Restaurant</button>
+      </form>
+    <h5><a href="/">Cuisine List</a></h5>
+  </div>

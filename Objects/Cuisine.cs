@@ -134,7 +134,36 @@ namespace RestaurantDirectory.Objects
       }
       return foundCuisine;
     }
+    public List<Restaurant> FindRestaurants()
+    {
+      List<Restaurant> foundRestaurants = new List<Restaurant> {};
+      SqlConnection conn = DB.Connection();
+      conn.Open();
 
+      SqlCommand cmd = new SqlCommand("SELECT * FROM restaurants WHERE cuisine_id = @CuisineId;", conn);
+      SqlParameter cuisineIdParameter = new SqlParameter("@CuisineId", this.GetId());
+      cmd.Parameters.Add(cuisineIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string name = rdr.GetString(1);
+        int cuisine_id = rdr.GetInt32(2);
+
+        Restaurant newRestaurant = new Restaurant(name, cuisine_id, id);
+        foundRestaurants.Add(newRestaurant);
+      }
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+      return foundRestaurants;
+    }
     public void Edit(string newName)
     {
       SqlConnection conn = DB.Connection();

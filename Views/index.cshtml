@@ -4,13 +4,27 @@
 }
 
   <div class="container">
-    <div class="jumbotron">
-      <h1>TEMPLATE</h1>
-    </div>
-      <h2>TEMPLATE</h2><br>
-
-        <form action="/TEMPLATE" method="post">
-          <button type="submit">SUBMIT</button>
-        </form>
-      <h5><a href="/TEMPLATE">TEMPLATE</a></h5><br>
+      <h1>Restaurant Directory</h1>
+      @if (Model.Count > 0)
+      {
+        <h2>Cuisines you fancy</h2>
+        @foreach (var cuisine in Model)
+        {
+          <h3><a href = "/cuisine/@cuisine.GetId()">@cuisine.GetName()</a></h3>
+          <ul>
+          @foreach (var restaurant in cuisine.FindRestaurants())
+          {
+            <li>@restaurant.GetName()</li>
+          }
+          </ul>
+        }
+          <h5><a href="/add/restaurant">New Restaurant</a></h5>
+          <h5><a href="/add/cuisine">New Cuisine</a></h5><br>
+          <form action="/delete-all" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <button class="btn btn-danger" type="submit" name="button">DELETE EVERYTHING!</button>
+          </form>
+      }else{
+        <h5><a href="/add/cuisine">New Cuisine</a></h5><br>
+      }
     </div>

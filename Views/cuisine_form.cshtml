@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+  <div class="container">
+    <h1>Restaurant Directory</h1>
+    <h2>New Cuisine</h2><br>
+
+      <form action="/add/cuisine" method="post">
+        <input class="form-control" type="text" name="cuisine_name" placeholder="Enter new cuisine">
+        <button class="btn btn-info" type="submit">Create Cuisine</button>
+      </form>
+    <h5><a href="/">Home</a></h5>
+  </div>
