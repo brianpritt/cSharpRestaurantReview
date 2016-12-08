@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+@{
+  Layout="Shared/_Layout.cshtml";
+}
+
+  <div class="container">
+    <h1>Restaurant Directory</h1>
+    <h2>Restaurant you fancy right now</h2>
+    <h3>@Model.GetName()</h3>
+      <h4>* @Model.GetCuisineId() *</h4>
+
+    <h4>Various details about @Model.GetName() are coming soon!</h4>
+
+    <hr>
+    <h5><a href="/modify/restaurant/@Model.GetId()">Modify this Restaurant</a></h5>
+    <hr>
+      <h5><a href="/add/restaurant">New Restaurant</a></h5>
+      <h5><a href="/add/cuisine">New Cuisine</a></h5>
+      <h5><a href="/">Home</a></h5><br>
+      <form action="/delete-cuisine/@Model.GetId()" method="post">
+        <input hidden="true" name="_method" value="DELETE">
+        <button class="btn btn-danger" type="submit">Delete this restaurant</button>
+      </form>
+    </div>

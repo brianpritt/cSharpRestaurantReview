@@ -14,7 +14,7 @@
           <ul>
           @foreach (var restaurant in cuisine.FindRestaurants())
           {
-            <li>@restaurant.GetName()</li>
+            <li><a href="/restaurant/@restaurant.GetId()">@restaurant.GetName()</a></li>
           }
           </ul>
         }

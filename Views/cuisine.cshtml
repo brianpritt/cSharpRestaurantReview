@@ -10,7 +10,7 @@
       <ul>
       @foreach (var restaurant in Model.FindRestaurants())
       {
-        <li>@restaurant.GetName()</li>
+        <li><a href="/restaurant/@restaurant.GetId()">@restaurant.GetName()</a></li>
       }
     </ul>
     <hr>
