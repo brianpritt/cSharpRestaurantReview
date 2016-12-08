@@ -5,7 +5,7 @@
 
   <div class="container">
       <h1>Restaurant Directory</h1>
-      <h2>Cuisines you fancy right now</h2>
+      <h2>Cuisine you fancy right now</h2>
       <h3>@Model.GetName()</h3>
       <ul>
       @foreach (var restaurant in Model.FindRestaurants())
@@ -13,7 +13,14 @@
         <li>@restaurant.GetName()</li>
       }
     </ul>
+    <hr>
+    <h5><a href="/modify/cuisine/@Model.GetId()">Modify this Cuisine</a></h5>
+    <hr>
       <h5><a href="/add/restaurant">New Restaurant</a></h5>
       <h5><a href="/add/cuisine">New Cuisine</a></h5>
-      <h5><a href="/">Home</a></h5>
+      <h5><a href="/">Home</a></h5><br>
+      <form action="/delete-cuisine/@Model.GetId()" method="post">
+        <input hidden="true" name="_method" value="DELETE">
+        <button class="btn btn-danger" type="submit">Delete this cuisine and its restaurants</button>
+      </form>
     </div>

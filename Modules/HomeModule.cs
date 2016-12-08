@@ -42,6 +42,27 @@ namespace RestaurantDirectory
         List<Cuisine> allCuisines = Cuisine.GetAll();
         return View["index.cshtml", allCuisines];
       };
+      Delete["/delete-cuisine/{id}"] = parameters =>{
+        Cuisine currentCuisine = Cuisine.Find(parameters.id);
+        List<Restaurant> currentRestaurants = currentCuisine.FindRestaurants();
+        foreach (Restaurant restaurant in currentRestaurants)
+        {
+          restaurant.Delete();
+        }
+        currentCuisine.Delete();
+        List<Cuisine> allCuisines = Cuisine.GetAll();
+        return View["index.cshtml", allCuisines];
+      };
+      Get["/modify/cuisine/{id}"] = parameters => {
+        var currentCuisine = Cuisine.Find(parameters.id);
+        return View["modify_cuisine.cshtml", currentCuisine];
+      };
+      Patch["/modify/cuisine/{id}"] = parameters =>{
+        var currentCuisine = Cuisine.Find(parameters.id);
+        currentCuisine.Edit(Request.Form["cuisine_name"]);
+        List<Cuisine> allCuisines = Cuisine.GetAll();
+        return View["index.cshtml", allCuisines];
+      };
     }
   }
 }
